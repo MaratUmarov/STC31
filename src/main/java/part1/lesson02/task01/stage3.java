@@ -4,7 +4,7 @@ import java.io.IOException;
 
 class MyOwnException extends IOException {
 
-    public MyOwnException(String s) {
+    public MyOwnException() {
 
     }
 }
@@ -13,7 +13,7 @@ public class stage3 {
 
     public static void main(String[] args) {
         try {
-            throw new MyOwnException("Бла Бла");
+            throw new MyOwnException();
 
         } catch (MyOwnException e) {
             System.out.println("Произвольная ошибка " + e);
