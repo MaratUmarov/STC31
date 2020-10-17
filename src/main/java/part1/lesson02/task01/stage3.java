@@ -1,22 +1,26 @@
 package part1.lesson02.task01;
 
-import java.io.IOException;
-
-class MyOwnException extends IOException {
-
-    public MyOwnException() {
-
-    }
-}
 
 public class stage3 {
 
     public static void main(String[] args) {
-        try {
-            throw new MyOwnException();
 
+        throwMyOwnException();
+
+    }
+
+    /**
+     * метод выброса собственного исключения
+     *
+     * @throws MyOwnException наследуется от IOException
+     * @see java.io.IOException
+     */
+    private static void throwMyOwnException() {
+        try {
+            throw new MyOwnException("my own Exception thrown");
         } catch (MyOwnException e) {
-            System.out.println("Произвольная ошибка " + e);
+            System.out.println(e.getMessage());
+            ;
         }
     }
 }
