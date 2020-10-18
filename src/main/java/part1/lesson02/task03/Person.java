@@ -1,28 +1,22 @@
 package part1.lesson02.task03;
 
 public class Person {
-    private String name;
-    private String sex;
+    private final String name;
+    private final String sex;
     private int age;
 
-        public Person() {
-
+    public Person(String name, String sex, int age) {
+        this.name = name;
+        this.sex = sex;
+        this.age = age;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getSex() {
-        return sex;
-    }
-
-    public String setSex(String sex) {
-        this.sex = sex;
         return sex;
     }
 
@@ -30,7 +24,12 @@ public class Person {
         return age;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    @Override
+    public String toString() {
+        return "Person{" +
+                " sex='" + sex + '\'' +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                '}';
     }
 }
