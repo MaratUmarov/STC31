@@ -1,6 +1,10 @@
 package part1.lesson02.task03;
 
-public class SortFirstMethod implements SortPerson {
+import java.util.HashMap;
+import java.util.Map;
+
+public class SortFirstMethod implements PersonSortable {
+
 
     public void sortingPerson() {
 
