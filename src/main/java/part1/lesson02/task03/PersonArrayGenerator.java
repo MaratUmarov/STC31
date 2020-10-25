@@ -38,12 +38,11 @@ public class PersonArrayGenerator {
         int upperLimit = 122;
 
         int length = 7;
-        StringBuilder name = new StringBuilder();
-        Pair<Integer> upperCase = new Pair(23, 45);
-        Pair<Integer> lowerCase = new Pair(lowerLimit, upperLimit);
-        name.append(getRandomChar(upperCase));
-        name.append(generateRandomString(length, lowerCase));
-        return name.toString();
+        Pair<Integer> upperCase = new Pair<>(65, 90);
+        Pair<Integer> lowerCase = new Pair<>(lowerLimit, upperLimit);
+        String name = getRandomChar(upperCase) +
+                generateRandomString(length, lowerCase);
+        return name;
     }
 
     private String generateRandomString(int length, Pair<Integer> charCase) {
@@ -62,7 +61,7 @@ public class PersonArrayGenerator {
 
     /**
      * в этом методе происходит наполнение массива Person
-     * @return
+     * @return people
      */
     public Person[] createPersonArray() {
         PersonArrayGenerator fpa = new PersonArrayGenerator();
