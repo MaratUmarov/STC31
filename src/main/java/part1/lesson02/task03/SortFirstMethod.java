@@ -4,12 +4,11 @@ import java.util.Comparator;
 
 public class SortFirstMethod implements PersonSortable {
 
+    // public void sortingPerson(Person[] personArray) {
+    public static Comparator<Person> compairSex = Comparator.comparing(Person::getSex);
+    public static Comparator<Person> compairName = compairSex.thenComparing(Person::getName);
+    public static Comparator<Person> finalCompair = compairName.thenComparing(Person::getAge);
 
-
-   // public void sortingPerson(Person[] personArray) {
-       public static Comparator<Person>comparSex=Comparator.comparing(person -> person.getSex());
-     public static    Comparator<Person>comparName=comparSex.thenComparing(person -> person.getName());
-      public static   Comparator<Person>finalCompair=comparName.thenComparing(person -> person.getAge());
 
     @Override
     public void sortingPerson(Person[] personArray) {

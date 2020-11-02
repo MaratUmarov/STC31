@@ -40,15 +40,14 @@ public class PersonArrayGenerator {
         int length = 7;
         Pair<Integer> upperCase = new Pair<>(65, 90);
         Pair<Integer> lowerCase = new Pair<>(lowerLimit, upperLimit);
-        String name = getRandomChar(upperCase) +
+        return getRandomChar(upperCase) +
                 generateRandomString(length, lowerCase);
-        return name;
     }
 
     private String generateRandomString(int length, Pair<Integer> charCase) {
         StringBuilder line = new StringBuilder();
         for (int i = 0; i < length; i++) {
-           line.append(getRandomChar(charCase));
+            line.append(getRandomChar(charCase));
         }
         return line.toString();
     }
@@ -61,11 +60,12 @@ public class PersonArrayGenerator {
 
     /**
      * в этом методе происходит наполнение массива Person
+     *
      * @return people
      */
     public Person[] createPersonArray() {
         PersonArrayGenerator fpa = new PersonArrayGenerator();
-        Person[] people = new Person[5];
+        Person[] people = new Person[50];
         for (int i = 0; i < people.length; i++) {
             people[i] = new Person(fpa.randGetNameForPerson(), fpa.randSexForPerson(), fpa.randAgeSelect());
             System.out.println(people[i]);

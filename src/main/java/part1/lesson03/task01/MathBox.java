@@ -1,25 +1,29 @@
 package part1.lesson03.task01;
 
+import java.util.Random;
+
 public class MathBox {
-    private int  num;
+    Random random = new Random();
 
-    public MathBox(int num) {
+    public int numbersForMathBox() {
+
+        return random.nextInt(100);
     }
 
-    public MathBox() {
-    }
+    public Number[] createNumbersArray() {
 
-    public int getNum() {
-        return num;
-    }
+        Number[] arr = new Number[50];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = new MathBox().numbersForMathBox();
+           // System.out.println(arr[i]);
+        }
+        /*Number[] arr = new Number[50];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = new Random().nextInt(100);
+            System.out.println(arr[i]);
+        }*/
 
-
-
-    @Override
-    public String toString() {
-        return "MathBox{" +
-                "num=" + num +
-                '}';
+        return arr;
     }
 }
 
