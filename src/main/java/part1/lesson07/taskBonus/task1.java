@@ -1,0 +1,43 @@
+package part1.lesson07.taskBonus;
+
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+
+public class task1 {
+    public static void main(String[] args) {
+/**
+ * Создание директории для файлов
+ * создание файлов для записи значений
+ */
+        File dir = new File("TestCode");
+        File basicText = new File(dir, "basicText.txt");
+        File secondText = new File(dir, "secondText.txt");
+        boolean b = dir.mkdir();
+        String str = "пробуем поменять кодировку";
+        try {
+            if (basicText.createNewFile() || secondText.createNewFile())
+                System.out.println("files had been created");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        /**
+         * запись и чтение из файла в разных кодировках
+         */
+        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(basicText), StandardCharsets.UTF_8))) {
+            bw.write(str);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(basicText)))) {
+            try (BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(secondText), StandardCharsets.UTF_16))) {
+
+                while (in.ready()) {
+                    String s = in.readLine();
+                    out.write(s);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
