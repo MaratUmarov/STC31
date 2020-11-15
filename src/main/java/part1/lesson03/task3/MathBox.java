@@ -1,9 +1,17 @@
-package part1.lesson03.task01;
+package part1.lesson03.task3;
 
 import java.util.Random;
 
-public class MathBox {
+public class MathBox extends ObjectBox {
     Random random = new Random();
+
+    public MathBox(Object obj) {
+        super(obj);
+    }
+
+    public MathBox() {
+        super();
+    }
 
     public int numbersForMathBox() {
 
@@ -15,15 +23,9 @@ public class MathBox {
         Number[] arr = new Number[50];
         for (int i = 0; i < arr.length; i++) {
             arr[i] = new MathBox().numbersForMathBox();
-           // System.out.println(arr[i]);
         }
-        /*Number[] arr = new Number[50];
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = new Random().nextInt(100);
-            System.out.println(arr[i]);
-        }*/
-
         return arr;
+
     }
 }
 
