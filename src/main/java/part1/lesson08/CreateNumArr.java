@@ -6,7 +6,7 @@ public class CreateNumArr {
     Random random = new Random();
 
     public int createNumArr() {
-        return random.nextInt(20);
+        return random.nextInt(50);
     }
 
     public Integer[] createNumbersArray() {
