@@ -2,18 +2,20 @@ package part1.lesson08;
 
 import java.util.Random;
 
+/**
+ * TODO переписать класс на стрим
+ */
 public class CreateNumArr {
     Random random = new Random();
 
-    public int createNumArr() {
-        return random.nextInt(50);
+    public int generateRandomInt(int bound) {
+        return random.nextInt(bound);
     }
 
-    public Integer[] createNumbersArray() {
-        Integer[] arr = new Integer[50];
+    public Integer[] createNumbersArray(int arrSize, int maxValue) {
+        Integer[] arr = new Integer[arrSize];
         for (int i = 0; i < arr.length; i++) {
-            arr[i] = new CreateNumArr().createNumArr();
-
+            arr[i] = generateRandomInt(maxValue);
         }
         return arr;
     }
