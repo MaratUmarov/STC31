@@ -6,8 +6,11 @@ import java.util.Random;
 
 public class AnimalCard implements Id {
     Random random = new Random();
-    Animal animal = new Animal("Bussy", "Stive", weightOfAnimal());
+    Animal animal = new Animal("Bossy", "Steve", weightOfAnimal());
 
+    /**
+     *
+     */
     Map<Id, Animal> mapAnimal = new HashMap<>();
 
     /**
@@ -31,7 +34,6 @@ public class AnimalCard implements Id {
      */
 
     public void searchAnimalByName() {
-        mapAnimal.containsValue(animal);
     }
 
     /**
@@ -39,7 +41,7 @@ public class AnimalCard implements Id {
      */
     public void changeDataOfAnimal() {
 
-        mapAnimal.replace(this, (new Animal("asdfg", "Stive", weightOfAnimal())));
+        mapAnimal.replace(this, (new Animal("asdfg", "Steve", weightOfAnimal())));
     }
 
     /**

@@ -49,5 +49,3 @@ public class Person {
         return Objects.hash(name, age, sex);
     }
 }
-
-

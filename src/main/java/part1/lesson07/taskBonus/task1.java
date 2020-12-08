@@ -14,7 +14,6 @@ public class task1 {
         File dir = new File("TestCode");
         File basicText = new File(dir, "basicText.txt");
         File secondText = new File(dir, "secondText.txt");
-        boolean b = dir.mkdir();
         String str = "пробуем поменять кодировку";
         try {
             if (basicText.createNewFile() || secondText.createNewFile())

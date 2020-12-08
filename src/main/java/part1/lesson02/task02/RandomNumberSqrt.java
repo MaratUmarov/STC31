@@ -1,5 +1,7 @@
 package part1.lesson02.task02;
 
+import com.sun.org.glassfish.gmbal.NameValue;
+
 import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
