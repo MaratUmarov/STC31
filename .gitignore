@@ -1,3 +1,7 @@
 /.idea/
 /mavenproj.iml
 /target/
+*.dmp
+*.phd
+*.txt
+*.trc
