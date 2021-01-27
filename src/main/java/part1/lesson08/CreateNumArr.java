@@ -3,17 +3,11 @@ package part1.lesson08;
 import java.util.Random;
 
 public class CreateNumArr {
-    Random random = new Random();
 
-    public int createNumArr(int bound) {
-        return random.nextInt(bound);
-    }
-
-    public Integer[] createNumbersArray(int arrSize,int maxValue) {
+    public Integer[] createNumbersArray(int arrSize, int minValue, int maxValue) {
         Integer[] arr = new Integer[arrSize];
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = createNumArr(maxValue);
-
+        for ( int i = 0 ; i < arr.length ; i++ ) {
+            arr[i] = new Random ().nextInt ( maxValue );
         }
         return arr;
     }
