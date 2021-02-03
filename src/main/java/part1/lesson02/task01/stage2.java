@@ -2,7 +2,7 @@ package part1.lesson02.task01;
 
 import java.util.Random;
 
-public class stage2 {
+public class  stage2 {
     public static void main(String[] args) {
         Random rnd = new Random();
         int[] array = new int[10];

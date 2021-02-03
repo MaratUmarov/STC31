@@ -5,10 +5,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DBUnit {
-    private DBUnit() {
+    DBUnit() {
     }
 
-    public static void DBCreate(Connection connection) throws SQLException {
+    public  void createDB(Connection connection) throws SQLException {
 
         try (Statement statement = connection.createStatement ()) {
             statement.execute ( "drop  table IF EXISTS Taxi,Passengers,Orders,Location_adress ;\n"

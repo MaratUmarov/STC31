@@ -2,18 +2,27 @@ package part1.lesson19;
 
 import java.sql.*;
 
-public class SomeActionClass {
+public class MethodsUnitDemo {
+   public void batchingMethod(Connection connection)throws SQLException{
+    Integer[] localArgs = new Integer[]{1, 2, 3, 4};
+        try (PreparedStatement preparedStatement = connection.prepareStatement (
+                "update passengers set name_pass='Block' where pass_id = ?" )) {
+            for ( Integer arg : localArgs ) {
+                preparedStatement.setInt ( 1, arg );
+                preparedStatement.addBatch ();
+            }
+            preparedStatement.executeBatch ();
+        }
+    }
     private static final String INSERT_SQL = "INSERT INTO taxi "
             + "(id_taxi,car,model,gosnumber) VALUES (?,?,?,?)";
 
-    public static void main(String[] args) throws SQLException {
-        try (Connection conn = DriverManager.getConnection ( "jdbc:postgresql://localhost:5432/1",
-                "postgres",
-                "postgres" )) {
-            DBUnit.DBCreate ( conn );
-            conn.setAutoCommit ( false );
+    public void someActionMethods(Connection connection)throws SQLException{
 
-            try (PreparedStatement insertStmt = conn.prepareStatement ( INSERT_SQL )) {
+
+            connection.setAutoCommit ( false );
+
+            try (PreparedStatement insertStmt = connection.prepareStatement ( INSERT_SQL )) {
                 // 1
                 insertStmt.setInt ( 1, 19 );
                 insertStmt.setString ( 2, "F1" );
@@ -36,7 +45,7 @@ public class SomeActionClass {
                 insertStmt.executeUpdate ();
 
                 //  Savepoint
-                Savepoint first_savepoint = conn.setSavepoint ( "first_savepoint" );
+                Savepoint first_savepoint = connection.setSavepoint ( "first_savepoint" );
 
                 // 4
                 insertStmt.setInt ( 1, 32 );
@@ -46,7 +55,7 @@ public class SomeActionClass {
                 insertStmt.executeUpdate ();
 
                 //  Savepoint
-                Savepoint second_savepoint = conn.setSavepoint ( "second_savepoint" );
+                Savepoint second_savepoint = connection.setSavepoint ( "second_savepoint" );
 
                 // 5
                 insertStmt.setInt ( 1, 18 );
@@ -55,17 +64,14 @@ public class SomeActionClass {
                 insertStmt.setString ( 4, "D555hgjk" );
                 insertStmt.executeUpdate ();
 
-                conn.releaseSavepoint ( second_savepoint );
+                connection.releaseSavepoint ( second_savepoint );
                 // Rollback
-                conn.rollback ( first_savepoint );
+                connection.rollback ( first_savepoint );
 
                 // Commit транзакции
-                conn.commit ();
+                connection.commit ();
             }
 
         }
     }
-}
-
-
 

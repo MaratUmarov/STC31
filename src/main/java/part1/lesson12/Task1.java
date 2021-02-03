@@ -1,6 +1,7 @@
 
 package part1.lesson12;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class Task1 {
@@ -9,7 +10,7 @@ public class Task1 {
         return
                 new Random ()
                         .ints ( arrSize, minValue, maxValue )
-                        .peek ( System.out::println )
+                        .peek (System.out::println)
                         .boxed ()
                         .toArray ( Integer[]::new );
     }
