@@ -76,6 +76,9 @@ public class DBUnit {
                     " (3,'Point_C','Point_B','2020-07-11',120,1,3),\n" +
                     "  (4,'Point_A','Point_C','2020-03-12',200,5,4);" );
 
+        }catch (SQLException se){
+            System.out.println ("Скорректируйте данные и ввод" );
+            se.printStackTrace ();
         }
 
 
