@@ -2,37 +2,47 @@ package part1.lesson10;
 
 import java.io.*;
 
-public class MyClassLoader extends ClassLoader {
-    private String name;
+public class MyClassLoader<T> extends ClassLoader {
+  @Override
+  public Class findClass(String loadingClassname) throws ClassNotFoundException {
+    byte[] b = loadClassFromFile(loadingClassname);
+    loadingClassname = loadingClassname.substring(loadingClassname.lastIndexOf("\\") + 1);
+    return defineClass(loadingClassname, b, 0, b.length);
+  }
+  private byte[] loadClassFromFile(String fileName) {
+    File classFile = new File(fileName + ".class");
 
-    @Override
-    protected Class<?> findClass(String name) throws ClassNotFoundException {
-        this.name = name;
-
-        File f = new File ( name + ".class" );
-        if (! f.isFile ())
-            throw new ClassNotFoundException ( "Нет такого класса " + name );
-        InputStream ins = null;
-        try {
-
-            ins = new BufferedInputStream ( new FileInputStream ( f ) );
-            byte[] b = new byte[(int) f.length ()];
-            ins.read ( b );
-
-            Class c = defineClass ( "Hello", b, 0, b.length );
-            return c;
-        } catch (Exception e) {
-            e.printStackTrace ();
-            throw new ClassNotFoundException ( "Проблемы с байт кодом" );
-        } finally {
-            try {
-                ins.close ();
-            } catch (NullPointerException e) {
-                e.printStackTrace ();
-            } catch (IOException e) {
-                e.printStackTrace ();
-            }
-        }
+    InputStream inputStream = null;
+    try {
+      inputStream = new FileInputStream(classFile);
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
     }
+    byte[] buffer;
+    ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+    int nextValue = 0;
+    try {
+      while ((nextValue = inputStream.read()) != -1) {
+        byteStream.write(nextValue);
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    buffer = byteStream.toByteArray();
+    return buffer;
+  }
 
+  public T load(String loadingClassname) {
+    loadingClassname = loadingClassname.replace(".class", "");
+    try {
+      return (T) findClass(loadingClassname).newInstance();
+    } catch (InstantiationException e) {
+      e.printStackTrace();
+    } catch (IllegalAccessException e) {
+      e.printStackTrace();
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    }
+    return null;
+  }
 }
